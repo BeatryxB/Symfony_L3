@@ -1,0 +1,46 @@
+{% extends 'public/layout.html.twig' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block body %}
+    <h1>Homepage</h1>
+    {% if homepage != null %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ homepage.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ homepage.title }}</td>
+            </tr>
+            <tr>
+                <th>Body</th>
+                <td>{{ homepage.body }}</td>
+            </tr>
+            <tr>
+                <th>TitleAbout</th>
+                <td>{{ homepage.titleAbout }}</td>
+            </tr>
+            <tr>
+                <th>TextAbout</th>
+                <td>{{ homepage.textAbout }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('homepage_index') }}">back to list</a>
+
+    <a href="{{ path('homepage_edit', {'id': homepage.id}) }}">edit</a>
+
+    {{ include('homepage/_delete_form.html.twig') }}
+
+        {% else %}
+            {%if app.user is null %}
+                <p>Aucune page d'acceuil</p>
+            {% else %}
+                <a href="{{ path('homepage_new') }}">Aucune homepage existante en crée une</a>
+            {%endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'public/layout.html.twig' %}
+
+{% block title %}Offer index{% endblock %}
+
+{% block body %}
+    <h1>Offer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>IntroduceText</th>
+                <th>OfferText</th>
+                <th>Price</th>
+                <th>number of subscription</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offer in offers %}
+            <tr>
+                <td>{{ offer.title }}</td>
+                <td>{{ offer.introduceText }}</td>
+                <td>{{ offer.offerText }}</td>
+                <td>{{ offer.price }}</td>
+                <td>{{ offer.souscriptions|length }}</td>
+                <td>
+                    {%if is_granted('ROLE_ADMIN') or is_granted('ROLE_AGENT')%}
+                    <a href="{{ path('offer_show', {'id': offer.id}) }}">show</a>
+                    <a href="{{ path('offer_edit', {'id': offer.id}) }}">edit</a>
+                    {% endif %}
+                    <a href="{{ path('offer_subscribe', {'id': offer.id}) }}">subscribe</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('offer_new') }}">Create new</a>
+{% endblock %}

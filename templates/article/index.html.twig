@@ -1,0 +1,33 @@
+{% extends 'public/layout.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="full">
+                <div class="heading_main text_align_center">
+                    <h2><span class="theme_color"></span>News</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+    {% for article in articles %}
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="full news_blog">
+                <img class="img-responsive" src="{{ 'images/'~article.url }}" alt="#" />
+                <div class="overlay"><a class="main_bt transparent" href="{{ path('article_show', { 'id' : article.id }) }}">View</a></div>
+                <div class="blog_details">
+                    <h3>{{ article.title }}</h3>
+                    <p>{{article.content}}</p>
+                    <p>edited {{article.created|date('Y-m-d')}}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+    <a href="{{ path('article_new') }}">Create new</a>
+{% endblock %}

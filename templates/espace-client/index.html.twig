@@ -1,0 +1,62 @@
+{% extends 'espace-client/layout.html.twig' %}
+
+{% block title %}Hello Client!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1>Bienvenue {{ app.user.prenom}} {{ app.user.nom}}</h1>
+    <h2> Voilà vos informations</h2>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Mail</th>
+            <td>{{ app.user.email }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ app.user.nom ? app.user.nom : 'information manquante' }}</td>
+        </tr>
+        <tr>
+            <th>Prenom</th>
+            <td>{{ app.user.prenom ? app.user.prenom : 'information manquante' }}</td>
+        </tr>
+        <tr>
+            <th>Genre</th>
+            <td>{{ app.user.genre ? app.user.genre : 'information manquante' }}</td>
+        </tr>
+        <tr>
+            <th>Date de naissance</th>
+            <td>{{ app.user.dateNaissance ? app.user.dateNaissance|date('Y-m-d') : 'information manquante' }}</td>
+        </tr>
+        <tr>
+            <th>Telephone</th>
+            <td>{{ app.user.telephone ? app.user.telephone : 'information manquante' }}</td>
+        </tr>
+        <tr>
+            <th>Ville</th>
+            <td>{{ app.user.ville ? app.user.ville : 'information manquante' }}</td>
+        </tr>
+        <tr>
+            <th>Code Postal</th>
+            <td>{{ app.user.codePostal ? app.user.codePostal : 'information manquante' }}</td>
+        </tr>
+        <tr>
+            <th>Pays</th>
+            <td>{{ app.user.pays ? app.user.pays : 'information manquante' }}</td>
+        </tr>
+        <tr>
+            <th>Numero de Securité Sociale</th>
+            <td>{{ app.user.numSecu ? app.user.numSecu : 'information manquante' }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('user_modify')}}">Editer profil</a></br>
+</div>
+{% endblock %}

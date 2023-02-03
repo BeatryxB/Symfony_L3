@@ -1,0 +1,33 @@
+{% extends 'espace-client/layout.html.twig' %}
+
+{% block title %}Souscription{% endblock %}
+
+{% block body %}
+    <h1>Souscription</h1>
+    {% if souscription|length >0 %}
+
+    {% for soursciptions in souscription %}
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ soursciptions.id }}</td>
+        </tr>
+        <tr>
+            <th>Etat</th>
+            <td>{{ soursciptions.etat }}</td>
+        </tr>
+        <tr>
+            <th>Offer</th>
+            <td>{{ soursciptions.offer.title }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endfor %}
+    {% else %}
+
+    <h2> Vous n'avez pas encore de Souscriptions</h2>
+{% endif %}
+
+{% endblock %}
